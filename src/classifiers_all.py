@@ -66,7 +66,7 @@ for column in ['Accuracy', 'Precision', 'Recall', 'Specificity', 'f1']:
 plt.title('Classifier Performance Metrics on Hotel Reservations Dataset')
 plt.xlabel('Classifier')
 plt.ylabel('Metric Value')
-plt.ylim(0.4, 1)
+plt.ylim(0.2, 0.9)
 plt.legend(title='Metrics')
 plt.grid(True)
 
