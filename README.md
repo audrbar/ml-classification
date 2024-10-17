@@ -18,7 +18,7 @@ The online hotel reservation channels have dramatically changed booking possibil
 
 # Results
 Classifier Performance Metrics on Hotel Reservations Dataset:
-![Classifier Performance Metrics Table](./img/Figure_1.png)
+![Classifier Performance Metrics Table](./img/Table_1.png)
 ![Classifier Performance Metrics Figure](./img/Figure_1.png)
 ## Project status
 Way forward:
