@@ -18,9 +18,8 @@ The online hotel reservation channels have dramatically changed booking possibil
 
 # Results
 Classifier Performance Metrics on Hotel Reservations Dataset:
-![Classifier Performance Metrics](./img/Figure_1.png)
-https://www.kaggle.com/datasets/ahsan81/hotel-reservations-classification-dataset
-
+![Classifier Performance Metrics Table](./img/Figure_1.png)
+![Classifier Performance Metrics Figure](./img/Figure_1.png)
 ## Project status
 Way forward:
 - Improve Error handling.
@@ -29,6 +28,6 @@ Way forward:
 ## Contributing
 Contributions are welcome! Please open an issue or submit a pull request if you have any improvements or bug fixes.
 ## Resources
-![Data Set](https://www.kaggle.com/datasets/ahsan81/hotel-reservations-classification-dataset)
+[Data Set Link](https://www.kaggle.com/datasets/ahsan81/hotel-reservations-classification-dataset)
 ## License
 This project is licensed under the MIT License.
