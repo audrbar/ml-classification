@@ -34,8 +34,8 @@ def evaluate_classifier(model):
 classifiers = [
     LogisticRegression(solver='liblinear', max_iter=500),
     DecisionTreeClassifier(criterion='entropy', max_depth=3, random_state=42),
-    RandomForestClassifier(n_estimators=18, criterion='entropy', bootstrap=True,
-                           max_samples=0.8, random_state=42, max_depth=5),
+    RandomForestClassifier(n_estimators=24, criterion='entropy', bootstrap=True,
+                           max_samples=0.8, random_state=42, max_depth=20),
     KNeighborsClassifier(n_neighbors=8, metric='minkowski'),
     GaussianNB()
 ]

@@ -7,14 +7,16 @@ For Hotel Reservations Dataset
 # Classification Algorithms
 The online hotel reservation channels have dramatically changed booking possibilities and customers’ behavior. A significant number of hotel reservations are called-off due to cancellations or no-shows. The typical reasons for cancellations include change of plans, scheduling conflicts, etc. This is often made easier by the option to do so free of charge or preferably at a low cost which is beneficial to hotel guests but it is a less desirable and possibly revenue-diminishing factor for hotels to deal with.
 ## Logistic Regression
-
+The accuracies for each threshold
+![Classifier Performance Metrics Table](./img/Figure_logistic.png)
 ## Decision Tree Classifier
 
-## RandomForestClassifier
-
 ## Random Forest Classifier
-
+GridSearchCV (Cross Validation)
+![Classifier Performance Metrics Table](./img/Figure_random_forest.png)
 ## K Neighbors Classifier
+
+## GaussianNB
 
 # Results
 Classifier Performance Metrics on Hotel Reservations Dataset:
