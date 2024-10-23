@@ -63,7 +63,7 @@ for column in ['Accuracy', 'Precision', 'Recall', 'Specificity', 'f1']:
     plt.plot(accuracy_df.index, accuracy_df[column], marker='o', linestyle='-', label=column)
 
 # Add titles and labels
-plt.title('Classifier Performance Metrics on Hotel Reservations Dataset')
+plt.title('Classifiers Performance Metrics on Hotel Reservations Dataset')
 plt.xlabel('Classifier')
 plt.ylabel('Metric Value')
 plt.ylim(0.2, 0.9)
