@@ -28,11 +28,12 @@ A significant number of hotel reservations are called-off due to cancellations o
 for cancellations include change of plans, scheduling conflicts, etc. This is often made easier by the option 
 to do so free of charge or preferably at a low cost which is beneficial to hotel guests, but it is a less desirable 
 and possibly revenue-diminishing factor for hotels to deal with.\
-A [Kaggle Hotel Reservations Dataset](https://www.kaggle.com/datasets/ahsan81/hotel-reservations-classification-dataset) 
+A [Kaggle Hotel Reservations Dataset](https://www.kaggle.com/datasets/ahsan81/hotel-reservations-classification-dataset)\ 
 is used for the project.\
 Dataset has **36275 entries, 19 columns**. One of them (booking_status) is the target column, 12 features columns
-with data type of integer or float and 4 features columns with data type of object.
-Dataset is unbalanced - initial train data class distribution is 19512 for not canceled bookings to 9508 
+with data type of integer or float and 4 features columns with data type of object.\
+![Classifier Data Correlation Plot](./img/Figure_data_correlation.png)\
+**Dataset is unbalanced** - initial train data class distribution is 19512 for not canceled bookings to 9508 
 canceled bookings.
 After Train *Dataset Balancing* class distribution is 9508 for not canceled booking to 9508 canceled booking.
 ## Initial Evaluation results
@@ -40,9 +41,7 @@ Classifiers Performance Metrics on Hotel Reservations Dataset are:
 ![Classifier Performance Metrics Table](./img/Table_1.png)
 ![Classifier Performance Metrics Figure](./img/Figure_1.png)
 ## Evaluation results after models tuning
-Two model were tuned:
-- Logistic Regression
-- Random Forest Classifier
+Two models were tuned: Logistic Regression and Random Forest Classifier.
 ### Logistic Regression
 The certain set of a thresholds was used to find the best threshold for the Logistic Regression model: 
 ![Classifier Performance Metrics Table](./img/Figure_logistic.png)
@@ -50,18 +49,27 @@ The best fitted threshold and corresponding accuracy is:
 ![Classifier Performance Metrics Table](./img/Table_logistic.png)
 ### Random Forests
 The GridSearch Cross Validation method was used to find the best parameters for the Random Forest model:
-![Classifier Performance Metrics Table](./img/Figure_random_forest.png)
-![Classifier Performance Metrics Table](./img/Table_1.png)
+![Classifier Performance Metrics Plot](./img/Figure_random_forest.png)
+## Overfitting Check
+![Classifier Overfitting Plot](./img/Figure_lr_overfitting.png)
+![Classifier Overfitting Plot](./img/Figure_rf_overfitting.png)
+## Data Normalization
+Min-Max scaling and Z-score normalization (standardization) are the two fundamental techniques 
+for normalization. 
+## Features Importance
+![Classifier Feature Importance Plot](./img/Figure_features_importance.png)
 ## Final Results
-| Model               | Accuracy                                |
-|---------------------|-----------------------------------------|
-| Logistic Regression | 0.8857                                  |
-| Random Forests      | 0.8928                                  |
+| Model               | Accuracy          | Overfitting distance |
+|---------------------|-------------------|----------------------|
+| Logistic Regression | 0.8857            |                      |
+| Random Forests      | 0.8928            |                      |
 ### Project status
 Way forward:
-- Introduce more params fo Random Forest model.
 - Check for model overfitting.
 - Evaluate feature normalisation possibilities.
+- Evaluate feature importance.
+- Check for data correlation.
+- Introduce more params fo Random Forest model.
 ### Contributing
 Contributions are welcome! Please open an issue or submit a pull request if you have any improvements or bug fixes.
 ### Resources

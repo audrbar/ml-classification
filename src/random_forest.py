@@ -4,7 +4,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix, precision_score, f1_score, recall_score
 from sklearn.model_selection import GridSearchCV
 
-from data_prep import X_train, X_test, y_train, y_test
+from data_prep import X_train, X_test, y_train, y_test, X
 
 # Initialize and train the RandomForestClassifier
 rf = RandomForestClassifier(random_state=42)
@@ -71,17 +71,21 @@ print(f"Test Precision: {test_precision:.4f}")
 print(f"Test Recall: {test_recall:.4f}")
 print(f"Test F1 Score: {test_f1:.4f}")
 
+# Print each feature along with its importance score
+print("\nFeature Importance:")
+for feature, importance in zip(X.columns, best_rf.feature_importances_):
+    print(f"{feature}: {importance:.4f}")
+
 # Extract the mean train and test (validation) scores for each estimator
 train_scores = cv_results['mean_train_score']
 test_scores = cv_results['mean_test_score']
-estimators = [f"n_estimators: {params['n_estimators']}, max_depth: {params['max_depth']}"
-              for params in cv_results['params']]
+estimators = [f"n_e: {params['n_estimators']}, m_d: {params['max_depth']}" for params in cv_results['params']]
 
 # Plot the train and test accuracies for each estimator
 plt.figure(figsize=(10, 6))
-plt.plot(estimators, train_scores, marker='o', linestyle='-', color='g', label='Train Accuracy')
-plt.plot(estimators, test_scores, marker='o', linestyle='-', color='b', label='Test Accuracy')
-plt.title('Train and Test Accuracies for Each Estimator')
+plt.plot(estimators, test_scores, marker='o', linestyle='-', color='g', label='Test Accuracy')
+plt.plot(estimators, train_scores, marker='o', linestyle='-', color='b', label='Train Accuracy')
+plt.title('Random Forests Overfitting Check: Train and Test Accuracies for Each Estimator')
 plt.xlabel('Estimator (n_estimators, max_depth)')
 plt.ylabel('Accuracy')
 plt.xticks(rotation=45, ha='right')  # Rotate x-axis labels for better readability

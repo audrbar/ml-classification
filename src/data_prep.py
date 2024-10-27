@@ -1,49 +1,54 @@
-import numpy as np
 import pandas as pd
+import seaborn as sns
+from matplotlib import pyplot as plt
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder, StandardScaler
 from collections import Counter
 
-# 1. Load Data and Define the Features and Target
+# 1. Load and Explore Data
 pd.options.display.max_columns = None
 df = pd.read_csv('/Users/audrius/Documents/VCSPython/ml-classification/data/HotelReservations.csv')
-df = df.dropna()
-
-# 1. Display the first few rows of the DataFrame
 print(df.info())
-# print(pd.Series({c: df[c].unique() for c in df}))
-print(df['type_of_meal_plan'].unique())
-print(df['room_type_reserved'].unique())
-print(df['market_segment_type'].unique())
-print(df['booking_status'].unique())
-print(f"\nDF Columns: \n{df.columns}")
+print("\nUniques:")
+print(f"Type of meal plan: {df['type_of_meal_plan'].unique()}")
+print(f"Room type reserved: {df['room_type_reserved'].unique()}")
+print(f"Market segment type: {df['market_segment_type'].unique()}")
+print(f"Booking status: {df['booking_status'].unique()}")
 
-# 2. Replace the string values with integers using numpy.where
-df['type_of_meal_plan'] = (
-    np.where(df['type_of_meal_plan'] == 'Not Selected', 0, np.where(df['type_of_meal_plan'] == 'Meal Plan 1', 1,
-    np.where(df['type_of_meal_plan'] == 'Meal Plan 2', 2, np.where(df['type_of_meal_plan'] == 'Meal Plan 3', 3,
-    df['type_of_meal_plan'])))))
-df['room_type_reserved'] = (
-    np.where(df['room_type_reserved'] == 'Room_Type 1', 1, np.where(df['room_type_reserved'] == 'Room_Type 2', 2,
-    np.where(df['room_type_reserved'] == 'Room_Type 3', 3, np.where(df['room_type_reserved'] == 'Room_Type 4', 4,
-    np.where(df['room_type_reserved'] == 'Room_Type 5', 5, np.where(df['room_type_reserved'] == 'Room_Type 6', 6,
-    np.where(df['room_type_reserved'] == 'Room_Type 7', 7,  df['room_type_reserved']))))))))
-df['market_segment_type'] = (
-    np.where(df['market_segment_type'] == 'Offline', 1, np.where(df['market_segment_type'] == 'Online', 2,
-    np.where(df['market_segment_type'] == 'Corporate', 3, np.where(df['market_segment_type'] == 'Aviation', 4,
-    np.where(df['market_segment_type'] == 'Complementary', 5, df['market_segment_type']))))))
-df["booking_status"] = np.where(df["booking_status"] == "Canceled", 0, 1)
+# 2. Handle missing values (if any)
+df = df.dropna()  # Or: df = df.fillna(df.mean())
+df = df.drop(df.columns[[0]], axis=1)
 
-# Check if there is an imbalance in the classes present in your target variable
-xx = df['booking_status'].value_counts().reset_index()
-print(xx)
+# 3. Identify categorical columns (if needed) and apply LabelEncoder:
+categorical_columns = df.select_dtypes(include=['object']).columns
+le = LabelEncoder()
+for col in categorical_columns:
+    df[col] = le.fit_transform(df[col])
 
-X, y = (df[['no_of_adults', 'no_of_children', 'no_of_weekend_nights', 'no_of_week_nights',
-            'type_of_meal_plan', 'required_car_parking_space', 'room_type_reserved', 'lead_time', 'arrival_year',
-            'arrival_month', 'arrival_date', 'market_segment_type', 'repeated_guest', 'no_of_previous_cancellations',
-            'no_of_previous_bookings_not_canceled', 'avg_price_per_room', 'no_of_special_requests']],
-        df['booking_status'])
+# 4. Apply StandardScaler to normalize the numeric features (columns)
+print(f"\nDF Describe before normalization: \n{df.describe()}")
+# Select numeric columns (int64 and float64)
+numeric_columns = df.select_dtypes(include=['int64', 'float64'])
 
-# Split dataset into training and test sets
+# Filter numeric columns where the maximum value is greater than 10
+filtered_columns = numeric_columns.loc[:, numeric_columns.max() > 10]
+print(f"\nDF Filtered Columns: \n{filtered_columns.columns}")
+
+# Initialize the StandardScaler
+scaler = StandardScaler()
+
+# Apply scaling only to the filtered columns (those where max > 10)
+df[filtered_columns.columns] = scaler.fit_transform(df[filtered_columns.columns])
+print(f"\nDF Describe after normalization: \n{df.describe()}")
+
+# 5. Check if there is an imbalance in the classes present in your target variable
+initial_target_balance = df['booking_status'].value_counts().reset_index()
+print("\nInitial Target Classes Balance: \n", initial_target_balance)
+
+# 6. Set Features (X) and Target (y) using colon syntax
+X, y = df.iloc[:, :-1],  df.iloc[:, -1]
+
+# Split dataset into training and test sets (imbalanced)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
 
 print(f"Initial y_train class distribution: {Counter(y_train)}")
@@ -76,3 +81,12 @@ if num_to_move > 0:
 # Print the updated distribution
 print(f"Updated y_train class distribution: {Counter(y_train)}")
 print(f"Updated y_test class distribution: {Counter(y_test)}")
+
+# Calculate the correlation matrix for numeric columns
+correlation_matrix = df.corr()
+
+# Visualize the correlation matrix using a heatmap
+plt.figure(figsize=(10, 7))
+sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt='.2f', linewidths=0.5)
+plt.title('Correlation Heatmap - Hotel Reservations Data')
+plt.show()

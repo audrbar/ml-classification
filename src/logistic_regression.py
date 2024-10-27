@@ -46,12 +46,13 @@ for threshold in thresholds:
     print(f"Threshold: {threshold}, Accuracy_test: {accuracy_test:.4f}, Accuracy_train: {accuracy_train:.4f}")
 
 # Plot the accuracies for each threshold
-plt.figure(figsize=(8, 4))
-plt.plot(thresholds, accuracies_test, marker='o', linestyle='-', color='b', label='Test Accuracy')
-plt.plot(thresholds, accuracies_train, marker='o', linestyle='-', color='r', label='Train Accuracy')
-plt.title('Accuracy vs. Threshold')
+plt.figure(figsize=(10, 6))
+plt.plot(thresholds, accuracies_test, marker='o', linestyle='-', color='g', label='Test Accuracy')
+plt.plot(thresholds, accuracies_train, marker='o', linestyle='-', color='b', label='Train Accuracy')
+plt.title('Logistic Regression Overfitting Check: Accuracy vs. Threshold')
 plt.xlabel('Threshold')
 plt.ylabel('Accuracy')
+plt.legend()
 plt.grid(True)
 plt.tight_layout()
 plt.show()
