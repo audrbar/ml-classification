@@ -6,14 +6,20 @@ from sklearn.model_selection import GridSearchCV
 
 from data_prep import X_train, X_test, y_train, y_test, X
 
-# Initialize and train the RandomForestClassifier
-rf = RandomForestClassifier(random_state=42)
-
 param_grid = {
-    'n_estimators': [23, 24, 26],
-    'max_depth': [18, 20, 22],
+    'n_estimators': [32, 34, 36],
+    'max_depth': [24, 26, 28],
     'bootstrap': [True]
 }
+
+# Parameters to choose from
+# 'min_samples_split': [2, 5, 10],
+# 'min_samples_leaf': [1, 2, 4],
+# 'max_features': ['sqrt', 'log2'],
+# 'criterion': ['gini', 'entropy']
+
+# Initialize and train the RandomForestClassifier
+rf = RandomForestClassifier(random_state=42)
 
 # Set up GridSearchCV (Cross Validation)
 grid_search = GridSearchCV(estimator=rf, param_grid=param_grid, cv=6, n_jobs=-1, verbose=2, scoring='accuracy',
@@ -23,7 +29,8 @@ grid_search = GridSearchCV(estimator=rf, param_grid=param_grid, cv=6, n_jobs=-1,
 grid_search.fit(X_train, y_train)
 
 # Print the best hyperparameters
-print("Best parameters found: ", grid_search.best_params_)
+print("Best parameters found:")
+print(grid_search.best_params_)
 
 # Get the best estimator from the grid search
 best_rf = grid_search.best_estimator_

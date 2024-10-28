@@ -9,6 +9,7 @@ from collections import Counter
 pd.options.display.max_columns = None
 df = pd.read_csv('/Users/audrius/Documents/VCSPython/ml-classification/data/HotelReservations.csv')
 print(df.info())
+
 print("\nUniques:")
 print(f"Type of meal plan: {df['type_of_meal_plan'].unique()}")
 print(f"Room type reserved: {df['room_type_reserved'].unique()}")
@@ -18,6 +19,7 @@ print(f"Booking status: {df['booking_status'].unique()}")
 # 2. Handle missing values (if any)
 df = df.dropna()  # Or: df = df.fillna(df.mean())
 df = df.drop(df.columns[[0]], axis=1)
+print('DF Columns: ', df.columns)
 
 # 3. Identify categorical columns (if needed) and apply LabelEncoder:
 categorical_columns = df.select_dtypes(include=['object']).columns
@@ -81,6 +83,9 @@ if num_to_move > 0:
 # Print the updated distribution
 print(f"Updated y_train class distribution: {Counter(y_train)}")
 print(f"Updated y_test class distribution: {Counter(y_test)}")
+
+# # Alternative distribution solution
+# df_sampled = df.groupby('Class').sample(n=100, random_state=1)
 
 # Calculate the correlation matrix for numeric columns
 correlation_matrix = df.corr()
