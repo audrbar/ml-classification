@@ -10,22 +10,24 @@ A significant number of hotel reservations are called-off due to cancellations o
 for cancellations include change of plans, scheduling conflicts, etc. This is often made easier by the option 
 to do so free of charge or preferably at a low cost which is beneficial to hotel guests, but it is a less desirable 
 and possibly revenue-diminishing factor for hotels to deal with.\
+
 A [Kaggle Hotel Reservations Dataset](https://www.kaggle.com/datasets/ahsan81/hotel-reservations-classification-dataset)\ 
-is used for the project.\
-Dataset has **36275 entries, 19 columns**. One of them (booking_status) is the target column, 12 features columns
-with data type of integer or float and 4 features columns with data type of object.\
+is used for the project. It has **36275 entries, 19 columns**. One of them (booking_status) is the _target column_, 
+_12 features columns_ with data type of integer or float and _4 features columns_ with data type of object. One 
+column - Booking_ID - was dropped.\
 ### Data Correlation
 **Data Correlation** (a statistical indicator that quantifies the degree to which two variables change in relation to each 
 other) of the Dataset *does not show clear correlation* between data columns, except two minor dependencies:\
 - no_of_previous_bookings_not_canceled / repeated_guest - 0,54
 - avg_price_per_room / room_type_reserved - 0,47
 - lead_time / booking_status - -0,44
-After removing these tree features from dataset result was 0.8624 for Logistic Regression and 0.8414 for Random Forest.\ 
-![Data Correlation Plot](./img/Figure_data_correlation.png)\
+After removing these tree features from dataset result was 0.8624 for Logistic Regression and 0.8414 for Random Forest. 
+![Data Correlation Plot](./img/Figure_data_correlation.png)
 ### Dataset Balancing
 **Dataset is unbalanced** - initial train data class distribution is 19512 for not canceled bookings to 9508 
 canceled bookings.
-After Train *Dataset Balancing* class distribution is 9508 for not canceled booking to 9508 canceled booking.
+After *Target Class Balancing* class distribution is as follows:
+![Data Distribution Plot](./img/Screen_target_balace.png)
 ### Data Normalization
 Min-Max scaling and Z-score normalization (standardization) are the two fundamental techniques 
 for normalization.
@@ -49,12 +51,12 @@ and false negatives for each class, which can be used to calculate various evalu
 while testing on the others, to obtain a more robust estimate of the model’s performance.
 ### Initial Evaluation results
 Classifiers Performance Metrics on Hotel Reservations Dataset are:
-![Classifier Performance Metrics Table](./img/Table_1.png)
-![Classifier Performance Metrics Figure](./img/Figure_1.png)
+![Classifier Performance Metrics Table](./img/Screen_accuracy_all.png)
+![Classifier Performance Metrics Figure](./img/Figure_classifier_performance.png)
 ### Models fitting
 Two models were fitted: Logistic Regression and Random Forest Classifier.
 ### Logistic Regression
-The certain set of a thresholds was used to find the best threshold for the Logistic Regression model: 
+The certain set of a thresholds was used to find the best threshold for the Logistic Regression model:
 ![Classifier Performance Metrics Table](./img/Figure_logistic.png)
 The best fitted threshold and corresponding accuracy is:
 ![Classifier Performance Metrics Table](./img/Table_logistic.png)
