@@ -11,17 +11,17 @@ for cancellations include change of plans, scheduling conflicts, etc. This is of
 to do so free of charge or preferably at a low cost which is beneficial to hotel guests, but it is a less desirable 
 and possibly revenue-diminishing factor for hotels to deal with.\
 
-A [Kaggle Hotel Reservations Dataset](https://www.kaggle.com/datasets/ahsan81/hotel-reservations-classification-dataset)\ 
+A [Kaggle Hotel Reservations Dataset](https://www.kaggle.com/datasets/ahsan81/hotel-reservations-classification-dataset) 
 is used for the project. It has **36275 entries, 19 columns**. One of them (booking_status) is the _target column_, 
 _12 features columns_ with data type of integer or float and _4 features columns_ with data type of object. One 
-column - Booking_ID - was dropped.\
+column - Booking_ID - was dropped.
 ### Data Correlation
 **Data Correlation** (a statistical indicator that quantifies the degree to which two variables change in relation to each 
 other) of the Dataset *does not show clear correlation* between data columns, except two minor dependencies:\
 - no_of_previous_bookings_not_canceled / repeated_guest - 0,54
 - avg_price_per_room / room_type_reserved - 0,47
-- lead_time / booking_status - -0,44
-After removing these tree features from dataset result was 0.8624 for Logistic Regression and 0.8414 for Random Forest. 
+- lead_time / booking_status - -0,44\
+After removing these tree features from dataset result was 0.8624 for Logistic Regression and 0.8414 for Random Forest.\ 
 ![Data Correlation Plot](./img/Figure_data_correlation.png)
 ### Dataset Balancing
 **Dataset is unbalanced** - initial train data class distribution is 19512 for not canceled bookings to 9508 
@@ -52,7 +52,7 @@ while testing on the others, to obtain a more robust estimate of the model’s p
 ### Initial Evaluation results
 Classifiers Performance Metrics on Hotel Reservations Dataset are:
 ![Classifier Performance Metrics Table](./img/Screen_accuracy_all.png)
-![Classifier Performance Metrics Figure](./img/Figure_classifier_performance.png)
+![Classifier Performance Metrics Figure](./img/Figure_performance_all.png)
 ### Models fitting
 Two models were fitted: Logistic Regression and Random Forest Classifier.
 ### Logistic Regression

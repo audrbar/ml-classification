@@ -87,11 +87,11 @@ print(f"Updated y_test class distribution: {Counter(y_test)}")
 # # Alternative distribution solution
 # df_sampled = df.groupby('Class').sample(n=100, random_state=1)
 
-# Calculate the correlation matrix for numeric columns
-correlation_matrix = df.corr()
-
-# Visualize the correlation matrix using a heatmap
-plt.figure(figsize=(10, 7))
-sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt='.2f', linewidths=0.5)
-plt.title('Correlation Heatmap - Hotel Reservations Data')
-plt.show()
+# # Calculate the correlation matrix for numeric columns
+# correlation_matrix = df.corr()
+#
+# # Visualize the correlation matrix using a heatmap
+# plt.figure(figsize=(10, 7))
+# sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt='.2f', linewidths=0.5)
+# plt.title('Correlation Heatmap - Hotel Reservations Data')
+# plt.show()
