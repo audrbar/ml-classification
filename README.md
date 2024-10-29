@@ -9,12 +9,15 @@ Can you predict if customer is going to cancel the reservation ?\
 A significant number of hotel reservations are called-off due to cancellations or no-shows. The typical reasons 
 for cancellations include change of plans, scheduling conflicts, etc. This is often made easier by the option 
 to do so free of charge or preferably at a low cost which is beneficial to hotel guests, but it is a less desirable 
-and possibly revenue-diminishing factor for hotels to deal with.\
-
-A [Kaggle Hotel Reservations Dataset](https://www.kaggle.com/datasets/ahsan81/hotel-reservations-classification-dataset) 
+and possibly revenue-diminishing factor for hotels to deal with. A [Kaggle Hotel Reservations Dataset](https://www.kaggle.com/datasets/ahsan81/hotel-reservations-classification-dataset) 
 is used for the project. It has **36275 entries, 19 columns**. One of them (booking_status) is the _target column_, 
-_12 features columns_ with data type of integer or float and _4 features columns_ with data type of object. One 
+_12 features columns_ with data type of integer or float and _3 features columns_ with data type of object. One 
 column - Booking_ID - was dropped.
+### Encoding categorical columns
+Label Encoder was applied to categorical columns: type_of_meal_plan, room_type_reserved and market_segment_type.
+### Data Normalization
+Standard Scaler method was applied to normalize the numeric features (columns), where the maximum value is greater 
+than 10.
 ### Data Correlation
 **Data Correlation** (a statistical indicator that quantifies the degree to which two variables change in relation to each 
 other) of the Dataset *does not show clear correlation* between data columns, except two minor dependencies:\
@@ -28,9 +31,6 @@ After removing these tree features from dataset result was 0.8624 for Logistic R
 canceled bookings.
 After *Target Class Balancing* class distribution is as follows:
 ![Data Distribution Plot](./img/Screen_target_balace.png)
-### Data Normalization
-Min-Max scaling and Z-score normalization (standardization) are the two fundamental techniques 
-for normalization.
 ### Classification Algorithms Evaluated
 - Logistic Regression
 - Decision Tree
