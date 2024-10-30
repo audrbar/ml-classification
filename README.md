@@ -75,8 +75,8 @@ The GridSearch Cross Validation method was used to find the best parameters for 
 ### Final Results
 | Model               | Accuracy          | Overfitting distance |
 |---------------------|-------------------|----------------------|
-| Logistic Regression | 0.8857            | 0,2317               |
-| Random Forests      | 0.8928            | 0,1                  |
+| Logistic Regression | 0.8857            | 23,17 %              |
+| Random Forests      | 0.8928            | 10 %                 |
 ### Project status
 Way forward:
 - Check for data correlation (+).

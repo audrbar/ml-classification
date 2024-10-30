@@ -89,7 +89,7 @@ print(f"Updated y_test class distribution: {Counter(y_test)}")
 
 # # Calculate the correlation matrix for numeric columns
 # correlation_matrix = df.corr()
-#
+# #
 # # Visualize the correlation matrix using a heatmap
 # plt.figure(figsize=(10, 7))
 # sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt='.2f', linewidths=0.5)
